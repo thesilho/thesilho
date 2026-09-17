@@ -1,50 +1,124 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const projects = [
+  {
+    number: '01',
+    title: 'After Light',
+    detail: 'Editorial / Paris / 2024',
+    image: '/blog-placeholder-2.jpg',
+    alt: 'Editorial portrait from the After Light series',
+    className: 'gallery-image gallery-image--wide',
+  },
+  {
+    number: '02',
+    title: 'Soft Geometry',
+    detail: 'Portraits / Berlin / 2023',
+    image: '/blog-placeholder-3.jpg',
+    alt: 'Fashion portrait from the Soft Geometry series',
+    className: 'gallery-image gallery-image--portrait',
+  },
+  {
+    number: '03',
+    title: 'Quiet Forms',
+    detail: 'Campaign / London / 2024',
+    image: '/blog-placeholder-4.jpg',
+    alt: 'Fashion image from the Quiet Forms series',
+    className: 'gallery-image gallery-image--wide',
+  },
+  {
+    number: '04',
+    title: 'The Interval',
+    detail: 'Personal work / 2022',
+    image: '/blog-placeholder-5.jpg',
+    alt: 'Black and white image from The Interval series',
+    className: 'gallery-image gallery-image--portrait',
+  },
+];
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead
+      title="SILHO — Fashion Editorial Photography"
+      description="SILHO is a fashion and editorial photographer working between light, form, and quiet gesture."
+      image="/blog-placeholder-1.jpg"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="SILHO home">SILHO<span>®</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img src="/blog-placeholder-1.jpg" alt="Fashion editorial portrait in soft light" />
+        <div class="hero-shade"></div>
+        <div class="hero-meta hero-meta--left">Photographer<br />Based in Europe</div>
+        <div class="hero-meta hero-meta--right">Selected work<br />2022—2024</div>
+        <div class="hero-title-wrap">
+          <p class="eyebrow">Fashion / Editorial / Portrait</p>
+          <h1 id="hero-title">The quiet<br /><em>between</em> things.</h1>
+        </div>
+        <a class="scroll-note" href="#about">Scroll to explore <span>↓</span></a>
+      </section>
+
+      <section class="intro section-grid reveal" id="about" aria-labelledby="about-title">
+        <p class="section-index">00 / Profile</p>
+        <div class="intro-image"><img src="/blog-placeholder-about.jpg" alt="Portrait of the photographer" loading="lazy" /></div>
+        <div class="intro-copy">
+          <p class="eyebrow">About the photographer</p>
+          <h2 id="about-title">Images with room<br /><em>to breathe.</em></h2>
+          <p class="bio">SILHO is a photographer exploring the space between movement and stillness. Working across fashion, portraiture, and culture, the practice is drawn to honest light, tactile detail, and the quiet force of a considered frame.</p>
+          <p class="availability"><span class="status-dot"></span> Available for selected commissions</p>
+          <p class="signature">Silho<br /><small>Photographer / Director</small></p>
+        </div>
+      </section>
+
+      <section class="work" id="work" aria-labelledby="work-title">
+        <div class="work-heading reveal">
+          <p class="section-index">01 / Selected work</p>
+          <h2 id="work-title">Recent<br /><em>editorials.</em></h2>
+          <p class="work-note">A collection of stories made slowly,<br />with good people and natural light.</p>
+        </div>
+        {projects.map((project) => (
+          <article class={`project reveal ${project.number === '02' || project.number === '04' ? 'project--offset' : ''}`}>
+            <div class="project-label"><span>{project.number}</span><span>{project.detail}</span></div>
+            <img class={project.className} src={project.image} alt={project.alt} loading="lazy" />
+            <h3>{project.title}</h3>
+          </article>
+        ))}
+      </section>
+
+      <section class="closing reveal" aria-labelledby="closing-title">
+        <p class="section-index">02 / Next chapter</p>
+        <h2 id="closing-title">Have a story<br /><em>in mind?</em></h2>
+        <a class="circle-link" href="mailto:hello@silho.studio">Start a conversation <span>↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div><a class="wordmark" href="#top">SILHO<span>®</span></a><p>Photography for the quietly curious.</p></div>
+      <div class="footer-links"><a href="mailto:hello@silho.studio">Email</a><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a><a href="mailto:hello@silho.studio?subject=Booking inquiry">Booking</a></div>
+      <p class="copyright">© {new Date().getFullYear()} SILHO<br />All rights reserved</p>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    </script>
+  </body>
 </html>
